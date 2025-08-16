@@ -5,64 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>An Exciting Evolution | Redirecting...</title>
     
-    <!-- यह लाइन 10 सेकंड के बाद पेज को रीडायरेक्ट कर देगी -->
+    <!-- This meta tag will redirect the page to https://famtoolapp.com/ after 10 seconds -->
     <meta http-equiv="refresh" content="10; url=https://famtoolapp.com/">
 
+    <!-- Google Fonts (Inter) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
 
     <style>
-        /* --- वेरिएबल और बेसिक सेटअप --- */
+        /* --- Basic Setup and Variables --- */
         :root {
-            --color-purple-400: #a78bfa;
-            --color-purple-500: #8b5cf6;
+            --color-purple-400: #a855f7; /* Tailwind purple-500 */
+            --color-purple-500: #9333ea; /* Tailwind purple-600 */
             --color-gray-300: #d1d5db;
-            --bg-dark: #0a0a1a;
-            --card-bg: rgba(22, 22, 42, 0.6);
+            --color-gray-400: #9ca3af;
         }
 
         html {
             box-sizing: border-box;
         }
 
-        *, *:before, *:after {
+        *, *::before, *::after {
             box-sizing: inherit;
+            margin: 0;
+            padding: 0;
         }
 
-        /* --- डायनामिक और आकर्षक बैकग्राउंड --- */
+        /* --- Body and Background --- */
         body {
             font-family: 'Inter', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 1rem;
-            background: var(--bg-dark);
-            color: #e0e0e0;
-            overflow: hidden;
+            color: var(--color-gray-300);
+            background: #0a0a1a;
+            overflow-y: auto; /* Changed from 'hidden' to 'auto' for scrolling */
             position: relative;
         }
-        
-        body::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
+
+        .main-container {
+            position: relative;
+            min-height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            z-index: 10;
+        }
+
+        /* Animated Gradient Background */
+        .animated-gradient {
             background: linear-gradient(-45deg, #0a0a1a, #1a0a1a, #0a1a1a, #1a1a0a);
             background-size: 400% 400%;
             animation: gradientBG 20s ease infinite;
-            z-index: 1;
-        }
-
-        body::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-            background-size: 40px 40px;
-            opacity: 0.8;
-            z-index: 2;
         }
 
         @keyframes gradientBG {
@@ -71,70 +65,77 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* --- 3D कार्ड डिज़ाइन (पूरी तरह से रिस्पॉन्सिव) --- */
-        .card-container {
+        /* Background Grid Pattern */
+        .grid-pattern {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 0;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        
+        /* --- Content Card --- */
+        .content-card {
             position: relative;
-            z-index: 3;
+            z-index: 10;
             width: 100%;
-            max-width: 720px; /* थोड़ा बड़ा कार्ड */
-            background: var(--card-bg);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            padding: 2.5rem 3rem; /* पैडिंग एडजस्ट की गई */
-            border-radius: 24px;
-            text-align: center;
+            max-width: 56rem; /* 896px */
+            background-color: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1.5rem; /* 24px */
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
-            transform: perspective(1500px) rotateY(0deg);
-            transition: transform 0.6s ease, box-shadow 0.6s ease;
-            animation: fadeInFromBottom 1s ease-out;
+            text-align: center;
+            padding: 1.5rem; /* 24px */
+            animation: fadeInFromBottom 1s ease-out forwards;
         }
 
         @keyframes fadeInFromBottom {
             from {
                 opacity: 0;
-                transform: perspective(1500px) translateY(50px) rotateX(10deg);
+                transform: translateY(40px) scale(0.98);
             }
             to {
                 opacity: 1;
-                transform: perspective(1500px) translateY(0) rotateX(0deg);
+                transform: translateY(0) scale(1);
             }
         }
 
-        /* --- कंटेंट स्टाइलिंग --- */
+        /* --- Elements Inside Card --- */
         .logo {
-            font-size: 2.5rem;
+            font-size: 2.25rem; /* 36px */
             font-weight: 900;
             color: #ffffff;
-            letter-spacing: 0.05em;
             margin-bottom: 1.5rem;
         }
+
         .logo span {
             color: var(--color-purple-400);
-            text-shadow: 0 0 15px rgba(167, 139, 250, 0.5);
-            animation: pulse 2.5s infinite ease-in-out; /* नया यूनिक एनिमेशन */
+            animation: pulse 2.5s infinite ease-in-out;
         }
-        
+
         @keyframes pulse {
-            0% { transform: scale(1); text-shadow: 0 0 15px rgba(167, 139, 250, 0.5); }
-            50% { transform: scale(1.05); text-shadow: 0 0 25px rgba(167, 139, 250, 0.8); }
-            100% { transform: scale(1); text-shadow: 0 0 15px rgba(167, 139, 250, 0.5); }
+            0% { transform: scale(1); text-shadow: 0 0 15px rgba(168, 85, 247, 0.5); }
+            50% { transform: scale(1.05); text-shadow: 0 0 25px rgba(168, 85, 247, 0.8); }
+            100% { transform: scale(1); text-shadow: 0 0 15px rgba(168, 85, 247, 0.5); }
         }
 
         h1 {
-            font-size: 2rem; /* शीर्षक को बड़ा किया गया */
+            font-size: 1.875rem; /* 30px */
             font-weight: 700;
-            color: #fff;
-            margin: 0 0 1rem 0;
+            color: #ffffff;
+            margin-bottom: 1rem;
         }
 
         p {
-            font-size: 1.1rem;
-            font-weight: 400;
-            line-height: 1.8; /* लाइन हाइट बढ़ाई गई */
+            font-size: 1rem; /* 16px */
             color: var(--color-gray-300);
-            margin: 0 auto 2rem auto;
-            max-width: 95%;
+            line-height: 1.625;
+            max-width: 42rem; /* 672px */
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 2rem;
         }
         
         p strong {
@@ -142,20 +143,20 @@
             font-weight: 700;
         }
 
-        /* --- प्रोग्रेस बार --- */
-        .progress-bar {
+        /* --- Progress Bar --- */
+        .progress-bar-container {
             width: 100%;
-            height: 8px;
             background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
+            border-radius: 9999px;
+            height: 0.625rem; /* 10px */
+            margin: 0 auto 1rem auto;
             overflow: hidden;
-            margin-top: 2rem;
         }
+
         .progress-bar-inner {
-            width: 100%;
+            background-image: linear-gradient(to right, var(--color-purple-500), var(--color-purple-400));
             height: 100%;
-            background: linear-gradient(90deg, var(--color-purple-500), var(--color-purple-400));
-            border-radius: 8px;
+            border-radius: 9999px;
             animation: progressAnimation 10s linear forwards;
         }
 
@@ -164,72 +165,85 @@
             to { transform: translateX(0); }
         }
 
+        /* --- Redirect Text --- */
         .redirect-text {
-            margin-top: 1rem;
-            font-size: 0.9rem;
-            color: var(--color-gray-300);
+            font-size: 0.875rem; /* 14px */
+            color: var(--color-gray-400);
         }
-        
+
         .redirect-text a {
             color: var(--color-purple-400);
+            font-weight: 600;
             text-decoration: none;
-            font-weight: 500;
         }
+
         .redirect-text a:hover {
             text-decoration: underline;
         }
+        
+        /* --- Footer Text --- */
+        .footer-text {
+            margin-top: 1.5rem; /* 24px */
+            font-size: 0.8rem; /* 12.8px */
+            color: var(--color-gray-400);
+            opacity: 0.6;
+        }
 
-        /* --- मीडिया क्वेरी (मोबाइल और टैबलेट के लिए) --- */
-        @media (max-width: 768px) {
-            .card-container {
-                padding: 2rem;
+        /* --- Media Queries (Responsive Design) --- */
+        @media (min-width: 640px) {
+            .content-card {
+                padding: 2.5rem; /* 40px */
             }
             .logo {
-                font-size: 2.25rem;
+                font-size: 3rem; /* 48px */
             }
             h1 {
-                font-size: 1.75rem;
+                font-size: 2.25rem; /* 36px */
             }
             p {
-                font-size: 1rem;
+                font-size: 1.125rem; /* 18px */
+            }
+        }
+        
+        @media (min-width: 768px) {
+            .content-card {
+                padding: 3rem; /* 48px */
             }
         }
 
-        @media (max-width: 480px) {
-            body {
-                padding: 0.5rem;
-            }
-            .card-container {
-                padding: 1.5rem;
-            }
-            .logo {
-                font-size: 2rem;
-            }
-            h1 {
-                font-size: 1.5rem;
-            }
-        }
     </style>
 </head>
-<body>
-    <div class="card-container">
-        <div class="logo">
-            <span>Fam</span>ToolApp
-        </div>
-        <h1>An Exciting Evolution</h1>
-        <p>
-            We're thrilled to announce that this platform has been acquired by <strong>FamToolApp</strong>. Our mission to empower parents continues, now with even greater resources. You will not only find all the features you love, but also many <strong>new advanced tools</strong>, with more being added in the future.
-            <br><br>
-            Just as before, our commitment remains the same: <strong>all features are completely free, with zero subscription costs.</strong> We believe every parent deserves the best tools to ensure their child's safety, without any financial burden.
-        </p>
-        
-        <div class="progress-bar">
-            <div class="progress-bar-inner"></div>
-        </div>
+<body class="animated-gradient">
 
-        <div class="redirect-text">
-            You will be redirected automatically. If not, <a href="https://famtoolapp.com/">click here</a>.
+    <div class="main-container">
+        <div class="grid-pattern"></div>
+
+        <div class="content-card">
+            <div class="logo">
+                <span>Fam</span>ToolApp
+            </div>
+
+            <h1>An Exciting Evolution</h1>
+
+            <p>
+                We're thrilled to announce that this platform has been acquired by <strong>FamToolApp</strong>. Our mission to empower parents continues, now with even greater resources. You will not only find all the features you love, but also many <strong>new advanced tools</strong>, with more being added in the future.
+                <br><br>
+                Just as before, our commitment remains the same: <strong>all features are completely free, with zero subscription costs.</strong> We believe every parent deserves the best tools to ensure their child's safety, without any financial burden.
+            </p>
+            
+            <div class="progress-bar-container">
+                <div class="progress-bar-inner"></div>
+            </div>
+
+            <div class="redirect-text">
+                You will be redirected automatically. If not, <a href="https://famtoolapp.com/">click here</a>.
+            </div>
+
+            <div class="footer-text">
+                © 2024 FamToolApp. All Rights Reserved.
+            </div>
         </div>
     </div>
+
 </body>
 </html>
